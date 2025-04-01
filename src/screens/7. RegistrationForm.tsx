@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TextInput, Button, Text, Alert } from "react-native";
+import { View, TextInput, Button, Text, Alert, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -32,17 +32,20 @@ const RegistrationForm = () => {
         errors,
         touched,
       }) => (
-        <View style={{ padding: 20 }}>
+        <View style={styles.container}>
+          {/* Heading */}
+          <Text style={styles.heading}>Registration Form</Text>
+
           {/* Name Input */}
           <TextInput
             placeholder="Full Name"
             onChangeText={handleChange("name")}
             onBlur={handleBlur("name")}
             value={values.name}
-            style={{ borderWidth: 1, padding: 10, marginBottom: 10 }}
+            style={styles.input}
           />
           {touched.name && errors.name && (
-            <Text style={{ color: "red" }}>{errors.name}</Text>
+            <Text style={styles.errorText}>{errors.name}</Text>
           )}
 
           {/* Email Input */}
@@ -52,10 +55,10 @@ const RegistrationForm = () => {
             onBlur={handleBlur("email")}
             value={values.email}
             keyboardType="email-address"
-            style={{ borderWidth: 1, padding: 10, marginBottom: 10 }}
+            style={styles.input}
           />
           {touched.email && errors.email && (
-            <Text style={{ color: "red" }}>{errors.email}</Text>
+            <Text style={styles.errorText}>{errors.email}</Text>
           )}
 
           {/* Password Input */}
@@ -65,10 +68,10 @@ const RegistrationForm = () => {
             onBlur={handleBlur("password")}
             value={values.password}
             secureTextEntry
-            style={{ borderWidth: 1, padding: 10, marginBottom: 10 }}
+            style={styles.input}
           />
           {touched.password && errors.password && (
-            <Text style={{ color: "red" }}>{errors.password}</Text>
+            <Text style={styles.errorText}>{errors.password}</Text>
           )}
 
           {/* Confirm Password Input */}
@@ -78,18 +81,50 @@ const RegistrationForm = () => {
             onBlur={handleBlur("confirmPassword")}
             value={values.confirmPassword}
             secureTextEntry
-            style={{ borderWidth: 1, padding: 10, marginBottom: 10 }}
+            style={styles.input}
           />
           {touched.confirmPassword && errors.confirmPassword && (
-            <Text style={{ color: "red" }}>{errors.confirmPassword}</Text>
+            <Text style={styles.errorText}>{errors.confirmPassword}</Text>
           )}
 
           {/* Submit Button */}
-          <Button title="Submit" onPress={() => handleSubmit()} />
+          <Button
+            title="Submit"
+            onPress={() => handleSubmit()}
+            color="#007BFF"
+          />
         </View>
       )}
     </Formik>
   );
 };
-
 export default RegistrationForm;
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    backgroundColor: "#f8f9fa",
+    flex: 1,
+    justifyContent: "center",
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 20,
+    color: "#343a40",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ced4da",
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 10,
+    backgroundColor: "#ffffff",
+  },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginBottom: 5,
+  },
+});

@@ -33,7 +33,12 @@ const TodoApp = () => {
         <Button title="ADD TODO" onPress={addTodo} />
         <FlatList
           data={todos}
-          renderItem={({ item }) => <Text style={styles.todoItem}>{item}</Text>}
+          renderItem={({ item }) => (
+            <View style={styles.todoContainer}>
+              <Text style={styles.bulletPoint}>•</Text>
+              <Text style={styles.todoItem}>{item}</Text>
+            </View>
+          )}
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
@@ -57,15 +62,27 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 50,
     marginBottom: 10,
+    textAlign: "center",
   },
   input: {
     borderWidth: 1,
     borderColor: "#ccc",
     padding: 10,
     marginBottom: 10,
+    borderRadius: 5,
+  },
+  todoContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 5,
+  },
+  bulletPoint: {
+    fontSize: 24,
+    color: "#333",
+    marginRight: 10,
   },
   todoItem: {
     fontSize: 18,
-    marginVertical: 5,
+    color: "#333",
   },
 });
