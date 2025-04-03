@@ -10,6 +10,7 @@ const HomeScreen = ({ navigation }: any) => {
     { name: "To-do List App", label: "To-do List App" },
     { name: "Forms", label: "Forms" },
     { name: "Registration Form", label: "Registration Form" },
+    { name: "Sports Tournament Registration Form", label: "Sports Tournament Registration Form" },
   ];
 
   return (
